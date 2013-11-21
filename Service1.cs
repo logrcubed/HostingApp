@@ -30,10 +30,10 @@ namespace RestImageProcessor
         public ImageUploadService()
         {
             host = new ServiceHost(typeof(ImageUploadService),
-                    new Uri("net.tcp://localhost:7635/ImageUploadService"));
-            NetTcpBinding b = new NetTcpBinding();
-            b.Security.Mode = SecurityMode.None;
-            b.Security.Message.ClientCredentialType = MessageCredentialType.None;
+                    new Uri("http://localhost:7635/ImageUploadService"));
+            BasicHttpBinding b = new BasicHttpBinding();
+            b.Security.Mode = (BasicHttpSecurityMode)SecurityMode.None;
+            b.Security.Message.ClientCredentialType = (BasicHttpMessageCredentialType)MessageCredentialType.None;
             b.MaxReceivedMessageSize = 671088640;
             b.MaxBufferPoolSize = 671088640;
             b.MaxBufferSize = 671088640;
@@ -49,7 +49,7 @@ namespace RestImageProcessor
             //b.ReaderQuotas.MaxStringContentLength = 671088640;
             //b.ReaderQuotas.MaxNameTableCharCount = 671088640;
             host.AddServiceEndpoint(typeof(IImageUpload),
-                b, "PeerService");
+                b, "FileUpload");
             host.Open();
         }
 
