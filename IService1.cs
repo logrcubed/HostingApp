@@ -9,12 +9,12 @@ using System.IO;
 
 namespace RestImageProcessor
 {
-    [ServiceContract]
+    [ServiceContract(Namespace = "ServiceForImageUpload")]
     public interface IImageUpload
     {
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "FileUpload/{fileName}")]
-        void FileUpload(string fileName, Stream fileStream);
+        [WebInvoke(Method = "POST", UriTemplate = "FileUpload")]
+        void FileUpload(Stream fileStream);
 
     } 
 }
